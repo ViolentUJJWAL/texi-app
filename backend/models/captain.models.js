@@ -11,7 +11,6 @@ const captainSchema = new mongoose.Schema({
     email: {
         type: String,
         required: [true, 'Please provide an email'],
-        match: [`^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$`, 'Please provide a valid email'],
         unique: true
     },
     phone: {
@@ -85,3 +84,7 @@ captainSchema.pre('save', async function () {
         this.password = await bcrypt.hash(this.password, parseInt(process.env.PASSWORD_SALT));
     }
 });
+
+
+const Captain = mongoose.model('Captain', captainSchema);
+module.exports = Captain;

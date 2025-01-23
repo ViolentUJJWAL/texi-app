@@ -4,7 +4,8 @@ const Captain = require('../models/captain.models');
 
 const authCheck = async (req, res, next) => {
     try {
-        const token = req.header('Authorization').replace('Bearer ', '') || req.cookies.token;
+        const token = req.header('Authorization')?.replace('Bearer ', '') || req.cookies.token;
+        console.log(token);
         if (!token) {
             return res.status(401).json({ error: 'Please authenticate' });
         }

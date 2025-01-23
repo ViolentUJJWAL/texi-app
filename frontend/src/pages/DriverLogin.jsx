@@ -14,7 +14,7 @@ const DriverLogin = () => {
                 {/* Login Form */}
                 <form className="p-8 pb-5 bg-white flex flex-col items-start w-[500px]">
                     <h4 className="text-2xl font-semibold text-black/85 mb-5">
-                        We are <span className="font-bold text-yellow-400">APNI TEXI</span>
+                        We are <span className="font-bold text-yellow-400">APNI TAXI</span>
                     </h4>
 
                     <p className="text-sm text-black/65 leading-relaxed max-w-[200px] mb-10">

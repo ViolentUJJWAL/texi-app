@@ -1,5 +1,5 @@
-const User = require('../models/user.model');
-const Captain = require('../models/captain.model');
+const User = require('../models/user.models');
+const Captain = require('../models/captain.models');
 const {validationResult} = require('express-validator');
 
 exports.register = async (req, res) => {
@@ -49,6 +49,7 @@ exports.register = async (req, res) => {
 
 exports.login = async (req, res) => {
     try {
+        console.log(req.body);
         const { role } = req.body;
         if(validationResult(req).errors.length > 0) {
             return res.status(400).json({ error: validationResult(req).errors[0].msg });
@@ -58,7 +59,8 @@ exports.login = async (req, res) => {
             if (!email || !password) {
                 return res.status(400).json({ error: 'Please provide all fields' });
             }
-            const user = await User.findOne({ email });
+            const user = await User.findOne({ email }).select('+password');
+            console.log(user);
             if (!user) {
                 return res.status(400).json({ error: 'Invalid credentials' });
             }
@@ -73,7 +75,7 @@ exports.login = async (req, res) => {
             if (!email || !password) {
                 return res.status(400).json({ error: 'Please provide all fields' });
             }
-            const captain = await Captain.findOne({ email });
+            const captain = await Captain.findOne({ email }).select('+password');
             if (!captain) {
                 return res.status(400).json({ error: 'Invalid credentials' });
             }

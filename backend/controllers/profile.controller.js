@@ -1,5 +1,5 @@
-const User = require('../models/user.model');
-const Captain = require('../models/captain.model');
+const User = require('../models/user.models');
+const Captain = require('../models/captain.models');
 const { validationResult } = require('express-validator');
 
 exports.getProfile = async (req, res) => {
